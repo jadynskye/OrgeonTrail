@@ -1,0 +1,455 @@
+#include <iostream>
+using namespace std;
+/* This is the introduction where the person inputs their name,
+ * there character type and learns the goal of the game.
+ * Due to time restraints Jadyn and JP will be covering how we would structure the game using things
+ *  we learned this semseter
+/*------------------------------------------------------------------------------------------------------------------*/
+/*Introduction function to be called in main*/
+string intro_func(){
+
+    cout<<"Welcome to Jadyn and Jp's version of Oregon Trail.\n\n";
+    cout<<"Oregon Trail is a game where you pick a class and try to survive the trail without dying.\n\n";
+    cout<<"Things to watch out for if you want to complete the trail is:\n"<<"*Starvation\n*Thieves\n*Wagon damage\n*Money";
+
+    string player_name;
+    cout<<"\n\nEnter you want your player name to be: \n\n";
+    cin>> player_name;
+    cout<<"Okay "<<player_name<<" In this version there are two classes to chose from. A banker and a carpenter.\n\n";
+    cout<<"Select which class you want to play as:\n";
+    return player_name ;
+}
+/*-----------------------------------------------------------------------------------------------------------------*/
+/*Character selection the where player can select class. Will be called in main*/
+struct banker{
+    int cash;
+    int health;
+};
+
+struct carpenter{
+    int cash;
+    int health;
+};
+
+
+int character_selection_func() {
+
+    cout << "1.A Banker from Boston\n2.A Carpenter from Ohio\n";
+    int user_select, banker = 1, carpenter = 2;
+    struct banker userBanker;
+    userBanker.cash = 12000;
+    userBanker.health = 70;
+
+    struct carpenter userCarpenter;
+    userCarpenter.cash = 3000;
+    userCarpenter.health = 100;
+
+    cin >> user_select;
+
+
+    if (user_select == 1) {
+
+        cout << "\nDo you wish to use this character?\n Type: Yes...";
+
+        int banker_Character;
+        int swapCharacter = 17;
+        string yes;               /*Code to take the string input and swap it with a return value for main func */
+        cin >> yes;
+        yes = swapCharacter;
+        banker_Character = swapCharacter;
+
+        cout<<"\n\nIf you would like to see the other character select its number\n";
+        cout<<"If you are happy with your character reselect the same character number";
+
+        cout << "\n\n*******************************" << "\n";
+        cout << "The Bankers Stats:\n";
+        cout << "Cash:" << userBanker.cash << "\n";
+        cout << "Health:" << userBanker.health << "\n";
+
+
+        return banker_Character;
+
+    }
+
+    if (user_select == 2) {
+        int carpenter_Character;
+        int swap_Character_forCarpenter=44;
+
+
+        cout << "*******************************" << "\n";
+        cout << "The Carpenters Stats:\n";
+        cout << "Cash:" << userCarpenter.cash << "\n";
+        cout << "Health:" << userCarpenter.health << "\n";
+
+
+        cout<<"\n   Do you wish to use this character?\n Type: Yes...";
+
+        string yes_1;
+        yes_1=swap_Character_forCarpenter;
+        carpenter_Character=swap_Character_forCarpenter;
+        cin>>yes_1;
+        cout<<"\n\nIf you would like to see the other character select its number\n";
+        cout<<"If you are happy with your character reselect the same character number\n";
+
+
+        return carpenter_Character;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+/*This is the supply function for the banker*/
+int choose_supply_func_banker(int a,int b);    /*Declaring here to use later*/
+
+
+int supply_func_banker(){
+    cout<<"\n...";
+    cout<<"\n.....";
+    cout<<"\n.........";
+    cout<<"\nTo prepare for the coming journey you need to buy supplies.";
+    choose_supply_func_banker(23,25);
+    return 0;
+
+}
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------------------------*/
+/*This is the supply function for the carpenter */
+int choose_supply_func_carpenter(int a,int b);    /*Declaring here to use later*/
+
+
+int supply_func_carpenter(){
+    cout<<"\n...";                     /*Generic loading screen that helps with flow control*/
+    cout<<"\n.....";
+    cout<<"\n.........";
+    cout<<"\nTo prepare for the coming journey you need to buy supplies.";
+    choose_supply_func_carpenter(23,25);
+    return 0;
+
+}
+/*------------------------------------------------------------------------------------------------------------------*/
+/*This is the supply function for the banker */
+int choose_supply_func_banker(int a, int b) {
+    cout << "\n\n-------Supply Menu----------";
+    cout << "\n\n---------Banker----------";             /*Generic loading screen that helps with flow control*/
+    cout << "\nItem:";
+    cout << "\nWagon Wheel     $1200\nBullets         $200\nFood            $1000\n";
+
+    /*Code to select a how many items the user wants using switch case
+      Setting up variables to be used for this here*/
+
+    int banker_item_selection_Menu, adjusted_bankers_cash, bankers_cash = 12000;
+
+    cout << "\n\nHow many Wagon Wheels do you want?";
+    cout << "\n1.One Wagon wheel";
+    cout << "\n2.Three Wagon wheels";
+    cout << "\n3.Five Wagon wheesl";
+    cout << "\n\nInput the corresponding number to how much you want";
+    cin >> banker_item_selection_Menu;
+    switch (banker_item_selection_Menu) {
+        case 1:
+            adjusted_bankers_cash = bankers_cash - 1200;
+            cout << "\n You bought One wagon wheel\n\nYour new cash balance is: " << adjusted_bankers_cash;
+            cout << "\n You are all set for your journey";
+            break;
+
+        case 2:
+            adjusted_bankers_cash = bankers_cash - 3600;
+            cout << "\n You bought Three wagon wheels\n\nYour new cash balance is: " << adjusted_bankers_cash;
+            cout << "\n You are all set for your journey";
+            break;
+
+        case 3:
+            adjusted_bankers_cash = bankers_cash - 6000;
+            cout << "\n You bought Five wagon wheels\n\nYour new cash balance is: " << adjusted_bankers_cash;
+            cout << "\n\n... You are all set for your journey";
+            break;
+            break;
+    }
+
+}
+/*------------------------------------------------------------------------------------------------------------------*/
+/*This is the supply function for the carpenter*/
+
+int choose_supply_func_carpenter(int a, int b){
+    cout<<"\n\n-------Supply Menu----------";
+    cout<<"\n--------Carpenter----------";
+    cout<<"\nItem:";
+    cout<<"\nWagon Wheel     $1200\nBullets         $200\nFood            $1000\n";
+
+    signed int carpenter_item_selection_Menu,adjusted_carpenters_cash,carpenters_cash=3000;
+
+    cout<<"\n\nHow many Wagon Wheels do you want?";
+    cout<<"\n1.One Wagon wheel";
+    cout<<"\n2.Three Wagon wheels";
+    cout<<"\n3.Five Wagon wheesl";
+    cout<<"\n\nInput the corresponding number to how much you want: ";
+    cin>>carpenter_item_selection_Menu;
+    switch (carpenter_item_selection_Menu) {
+        case 1:
+            adjusted_carpenters_cash = carpenters_cash-1200;
+            cout<<"\n You bought One wagon wheel\n\nYour new cash balance is: "<<adjusted_carpenters_cash;
+            cout<<"\n You are all set for your journey";
+            break;
+
+        case 2:
+            adjusted_carpenters_cash = carpenters_cash-3600;
+            cout<<"\n You bought Three wagon wheels\n\nYour new cash balance is: "<<adjusted_carpenters_cash;
+            cout<<"\n You are all set for your journey";
+            break;
+
+        case 3:
+            adjusted_carpenters_cash = carpenters_cash-6000;
+            cout<<"\n You bought Five wagon wheels\n\nYour new cash balance is: "<<adjusted_carpenters_cash;
+            cout<<"\n\n... You are all set for your journey";
+            break;
+            break;
+    }
+
+}
+/*----------------------------------------------------------------------------------------------------------------*/
+/*This is the March play-through for the banker */
+/*For the sake of time we are starting each character with the full cash each character comes with,
+ * 20 bullets ,and 100 units of food**/
+
+void March_play_banker(){
+    /*Variables to use within this playthrough*/
+    /*Starting Balances*/
+    int banker_cash_playthrough=12000,banker_bullets_playthrough=20,banker_food_playthrough=100,banker_health=70;;
+    int wagon_wheels_playthrough=4;
+    /*Consumption balances*/
+    int banker_bullets_consumed=0,banker_food_consumed=0,banker_wheel_consumed=0,banker_cash_consumed=0;
+    int banker_health_consumed=0;
+    int counter=0;
+    cout<<"\nYou gather your things and load them onto the wagon\nYou go on to ";
+    for(int i=0;i<5;i++) {
+        cout << "\n.......";
+        cout << "\nYou traveled 5 miles";                     /*Variables to be subtracted from main balances*/
+
+        banker_bullets_consumed+=2;
+        banker_food_consumed+=5;
+        counter+=5;
+    }
+    cout<<"\n\nYou traveled a total of "<<counter<<" miles.";
+    cout<<"\n\nDuring the "<<counter<<" miles you used some of your supplies.";
+    cout<<"\nHere is a summary of what was consumed:";
+    cout<<"\n-----------------------------------------";
+
+
+    cout<<"\nWagon Wheel:"<< banker_wheel_consumed <<"\n\nFood:"<<banker_food_consumed<<"\n\nBullets:"<<banker_bullets_consumed;
+    cout<<"\n\nCash:"<<banker_cash_consumed<<"\n\nHealth:"<<banker_health_consumed;
+
+    /*This section is to update the character balances on the code*/
+
+    cout<<"\n\nHere is a update of your character inventory balances:";
+    cout<<"\n--------------------------------------------";
+    /*Assigment Variables for updating*/
+    wagon_wheels_playthrough = wagon_wheels_playthrough - banker_wheel_consumed;
+
+    banker_food_playthrough = banker_food_playthrough - banker_food_consumed;
+
+    banker_bullets_playthrough = banker_bullets_playthrough - banker_bullets_consumed;
+
+    banker_cash_playthrough = banker_cash_playthrough - banker_cash_consumed;
+
+    banker_health = banker_health - banker_health_consumed;
+
+
+    cout<<"\nWagon Wheel:"<< wagon_wheels_playthrough<<"\n\nFood:"<<banker_food_playthrough;
+    cout<<"\n\nBullets:"<<banker_bullets_playthrough;
+    cout<<"\n\nCash:"<<banker_cash_playthrough<<"\n\nHealth:"<<banker_health;
+
+    /*Prompt for rest that will consume materials*/
+
+    cout<<"\n...............Do you want to to take a rest for 3 days?";
+    cout<<"\n........................1.Yes or 2.No";
+    cout <<"\n...................Input the corresponding number";
+    int user_April_playthrough;
+    /*Consumption balances*/
+    banker_bullets_consumed=0,banker_food_consumed=0,banker_wheel_consumed=0,banker_cash_consumed=0;
+    banker_health_consumed=0;
+
+    cin>>user_April_playthrough;
+
+    switch(user_April_playthrough)
+
+        case 1: {
+            for (int i = 0; i < 3; i++) {
+                int counter_2 = 0;
+                cout << "\n.......";
+                cout << "\nYou rested 1 day";                     /*Variables to be subtracted from main balances*/
+
+                ;
+                banker_food_consumed += 6;
+                banker_health_consumed += 4;
+                counter_2 += 1;
+
+
+                cout << "\n\nDuring the " << counter_2 << " days you used some of your supplies.";
+                cout << "\nHere is a summary of what was consumed:";
+                cout << "\n-----------------------------------------";
+
+                cout << "\nWagon Wheel:" << banker_wheel_consumed << "\n\nFood:" << banker_food_consumed
+                     << "\n\nBullets:" << banker_bullets_consumed;
+                cout << "\n\nCash:" << banker_cash_consumed << "\n\nHealth:" << banker_health_consumed;
+
+                cout<<"\n\nHere is a update of your character inventory balances:";
+                cout<<"\n--------------------------------------------";
+                /*Assigment Variables for updating*/
+                wagon_wheels_playthrough = wagon_wheels_playthrough - banker_wheel_consumed;
+
+                banker_food_playthrough = banker_food_playthrough - banker_food_consumed;
+
+                banker_bullets_playthrough = banker_bullets_playthrough - banker_bullets_consumed;
+
+                banker_cash_playthrough = banker_cash_playthrough - banker_cash_consumed;
+
+                banker_health = banker_health + banker_health_consumed;
+
+                cout<<"\nWagon Wheel:"<< wagon_wheels_playthrough<<"\n\nFood:"<<banker_food_playthrough;
+                cout<<"\n\nBullets:"<<banker_bullets_playthrough;
+                cout<<"\n\nCash:"<<banker_cash_playthrough<<"\n\nHealth:"<<banker_health;
+
+            }
+        }
+
+
+
+
+
+
+}
+
+
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/*This is the April play-through for the banker */
+void April_play_banker(){
+
+
+    int banker_cash_playthrough=12000,banker_bullets_playthrough=20,banker_food_playthrough=100;
+    int wagon_wheels_playthrough=4,banker_health_playthrough=70;
+    int banker_bullets_consumed=0,banker_food_consumed=0,banker_wheel_consumed=0,banker_cash_consumed=0;
+    int banker_health_consumed=0;
+
+    int counter=0;
+    cout<<"\nYou gather your things and load them onto the wagon\nYou go on to ";
+    for(int i=0;i<5;i++) {
+        cout << "\n.......";
+        cout << "\nYou traveled 5 miles";                     /*Variables to be subtracted from main balances*/
+
+        banker_bullets_consumed+=2;
+        banker_food_consumed+=5;
+        counter+=5;
+    }
+    cout<<"\n\nYou traveled a total of "<<counter<<" miles.";
+    cout<<"\n\nDuring the "<<counter<<" miles you used some of your supplies.";
+    cout<<"\nHere is a summary of what was consumed:";
+    cout<<"\n-----------------------------------------";
+
+
+    cout<<"\nWagon Wheel:"<< banker_wheel_consumed <<"\n\nFood:"<<banker_food_consumed<<"\n\nBullets:"<<banker_bullets_consumed;
+    cout<<"\n\nCash:"<<banker_cash_consumed;
+
+    /*This section is to update the character balances on the code*/
+
+    cout<<"\nHere is a update of your character inventory balances:";
+    cout<<"\n--------------------------------------------";
+    /*Assigment Variables for updating*/
+    wagon_wheels_playthrough = wagon_wheels_playthrough - banker_wheel_consumed;
+
+    banker_food_playthrough = banker_food_playthrough - banker_food_consumed;
+
+    banker_bullets_playthrough = banker_bullets_playthrough - banker_bullets_consumed;
+
+    banker_cash_playthrough = banker_cash_playthrough - banker_cash_consumed;
+
+    banker_health_playthrough = banker_health_playthrough - banker_health_consumed;
+
+
+    cout<<"\nWagon Wheel:"<< wagon_wheels_playthrough<<"\n\nFood:"<<banker_food_playthrough;
+    cout<<"\n\nBullets:"<<banker_bullets_playthrough;
+    cout<<"\n\nCash:"<<banker_cash_playthrough;
+
+
+
+}
+
+
+
+/*----------------------------------------------------------------------------------------------------------------*
+/*This is the April play-through for the carpenter*/
+void March_play_carpenter(){
+    cout<<"\nNow in April playthrough";
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------*/
+/*This is the April play-through for the carpenter*/
+void April_play_carpenter(){
+    cout<<"\nNow in April playthrough";
+}
+
+
+
+/*----------------------------------------------------------------------------------------------------------------*/
+int main() {
+
+    int selected_Banker, selected_Carpenter, program_Choice_charSelect;
+
+    intro_func();
+    character_selection_func();                /*This takes the returned value that the user selects and initializes it
+                                               to variable program_choice_char select*/
+    program_Choice_charSelect = character_selection_func();
+
+    switch (program_Choice_charSelect) {
+        case 17:
+            supply_func_banker();
+
+            cout << "\nWhat month would you like to depart on your journey?";
+
+            int month_selection;
+
+            cout << "\n\n1.March\n2.April";
+            cout << "\nEnter the corresponding number to the month:";
+            cin >> month_selection;
+
+            switch (month_selection) {
+                case 1:
+                    March_play_banker();
+
+                    break;
+
+                case 2:
+                    April_play_banker();
+                    break;
+                    break;
+                case 44:
+                    supply_func_carpenter();
+                    cout << "\nWhat month would you like to depart on your journey?";
+
+                    int month_selection;
+
+                    cout << "\n\n1.March\n2.April";
+                    cout << "\nEnter the corresponding number to the month:";
+                    cin >> month_selection;
+
+                    switch (month_selection) {
+                        case 1:
+                            March_play_carpenter();
+
+                            break;
+
+                        case 2:
+                            April_play_carpenter();
+
+                            break;
+                    }
+                    break;
+            }
+
+
+            cout << "\n\nEnd of current game ";
+
+
+            return 0;
+    }
